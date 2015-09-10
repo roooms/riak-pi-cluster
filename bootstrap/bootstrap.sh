@@ -10,19 +10,19 @@ case "$MAC_ADDRESS" in
   "b8:27:eb:fc:c5:10")
     export NEW_HOSTNAME="utility"
     ;;
-  "01")
+  "b8:27:eb:a6:0d:2f")
     export NEW_HOSTNAME="riak1"
     ;;
   "b8:27:eb:db:53:2e")
     export NEW_HOSTNAME="riak2"
     ;;
-  "03")
+  "b8:27:eb:9e:ea:52")
     export NEW_HOSTNAME="riak3"
     ;;
-  "04")
+  "b8:27:eb:d3:24:30")
     export NEW_HOSTNAME="riak4"
     ;;
-  "05")
+  "b8:27:eb:e4:bf:27")
     export NEW_HOSTNAME="riak5"
     ;;
   *)
