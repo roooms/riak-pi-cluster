@@ -1,9 +1,9 @@
 # Build Riak for ARM on Raspberry Pi
 
-```
-default username: pi
+default username: pi  
 default password: raspberry
 
+```
 # Add Erlang Solutions as a source
 echo 'deb http://binaries.erlang-solutions.com/debian wheezy contrib' | sudo tee -a /etc/apt/sources.list
 wget -O - http://binaries.erlang-solutions.com/debian/erlang_solutions.asc | sudo apt-key add -
