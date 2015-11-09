@@ -3,8 +3,10 @@
 # this bootstrap script runs initially as the 'pi' user 
 # until we swap to 'basho' and remove 'pi' to tidy up.
 
-# set some variables based on mac address
+# set some variables based on MAC_ADDRESS
 export MAC_ADDRESS=`cat /sys/class/net/eth0/address`
+export CURRENT_HOSTNAME=`hostname`
+export CURRENT_IPADDR=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | cut -d " " -f1`
 
 case "$MAC_ADDRESS" in
   "b8:27:eb:fc:c5:10")
@@ -31,7 +33,9 @@ case "$MAC_ADDRESS" in
     export NEW_HOSTNAME="riak5.pi"
     export IPADDR="10.0.0.115"
     ;;
-  *)
+  *) # catch all
+    export NEW_HOSTNAME=$CURRENT_HOSTNAME
+    export IPADDR=$CURRENT_IPADDR
     ;;
 esac
 
