@@ -1,0 +1,16 @@
+127.0.0.1	localhost
+::1		localhost ip6-localhost ip6-loopback
+fe00::0		ip6-localnet
+ff00::0		ip6-mcastprefix
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+127.0.1.1	raspberrypi
+10.0.0.110	utility utility.pi
+10.0.0.111	riak1 riak1.pi
+10.0.0.112	riak2 riak2.pi
+10.0.0.113	riak3 riak3.pi
+10.0.0.114	riak4 riak4.pi
+10.0.0.115	riak5 riak5.pi
+
+192.168.0.234	dbrown.pi

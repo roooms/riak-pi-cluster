@@ -12,9 +12,7 @@ wget -O - http://binaries.erlang-solutions.com/debian/erlang_solutions.asc | sud
 sudo apt-get update --fix-missing
 
 # Install some useful packages
-sudo apt-get install --yes \
-vim \
-libpam0g-dev
+sudo apt-get install vim libpam0g-dev --yes
 
 # Install Erlang R16B02
 sudo apt-get install --yes \

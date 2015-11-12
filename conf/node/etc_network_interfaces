@@ -4,9 +4,8 @@ iface lo inet loopback
 auto eth0
 allow-hotplug eth0
 iface eth0 inet static
-address IPADDR
+address static_placeholder
 netmask 255.255.255.0
-broadcast 192.168.0.255
 
 auto wlan0
 allow-hotplug wlan0
@@ -17,4 +16,3 @@ auto wlan1
 allow-hotplug wlan1
 iface wlan1 inet manual
 wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-
