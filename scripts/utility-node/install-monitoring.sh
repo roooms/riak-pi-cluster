@@ -26,8 +26,8 @@ install_carbon() {
 
 install_grafana() {
   echo "Installing grafana..."
-  wget https://github.com/fg2it/grafana-on-raspberry/blob/master/v2.1.2/grafana_2.1.2_armhf.deb
-  apt-get install adduser libfontconfig -y
+  wget https://raw.githubusercontent.com/fg2it/grafana-on-raspberry/master/v2.1.2/grafana_2.1.2_armhf.deb
+  apt-get install adduser libfontconfig --yes
   dpkg -i grafana_2.1.2_armhf.deb \
   && e_success "Installed grafana"
   service grafana-server start \
@@ -74,4 +74,4 @@ run_as_superuser
 install_graphite
 install_carbon
 install_apache
-#install_grafana # todo: need to test with https://github.com/fg2it/grafana-on-raspberry
+install_grafana
