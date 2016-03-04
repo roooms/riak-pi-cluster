@@ -16,22 +16,21 @@ manage the cluster and run the install scripts.
 ## Pre-Install Configuration
 
 The Riak Pi Cluster is expected to run as a standalone system with hardcoded IP 
-addresses. These are defined in `conf/node/etc_hosts` which is copied to 
-`/etc/hosts` on all nodes during "bootstrap".
+addresses. These are currently defined in `scripts/node/bootstrap.sh` in the `update_hostname_and_ipaddr` function.
 
-You can edit the IP addresses in `conf/node/etc_hosts` but hostnames are fixed
+You can edit the IP addresses to suit your needs but hostnames are fixed
 and matched to node MAC addresses during "bootstrap".
 
 Below is an example of a sane IP configuration. You should configure your
 laptop (if you are also connecting to the switch) to use a neighbouring IP.
 
 ```
-10.0.0.110	utility utility.local
-10.0.0.111	riak1 riak1.local
-10.0.0.112	riak2 riak2.local
-10.0.0.113	riak3 riak3.local
-10.0.0.114	riak4 riak4.local
-10.0.0.115	riak5 riak5.local
+utility_eth0_ipaddr="192.168.0.110"
+riak1_eth0_ipaddr="192.168.0.111"
+riak2_eth0_ipaddr="192.168.0.112"
+riak3_eth0_ipaddr="192.168.0.113"
+riak4_eth0_ipaddr="192.168.0.114"
+riak5_eth0_ipaddr="192.168.0.115"
 ```
 
 The bootstrap script installs `avahi-daemon` which will avoid the need for additional hostname configuration.
