@@ -1,10 +1,10 @@
-# Build Riak for ARM on Raspberry Pi
+# Build Riak for ARM on Raspberry Pi (Raspbian Jessie)
 
 default username: pi  
 default password: raspberry
 
 ```
-# Add Erlang Solutions as a source
+# Add Erlang Solutions as a source (need wheezy for Erlang R16B02)
 echo 'deb http://binaries.erlang-solutions.com/debian wheezy contrib' | sudo tee -a /etc/apt/sources.list
 wget -O - http://binaries.erlang-solutions.com/debian/erlang_solutions.asc | sudo apt-key add -
 
@@ -37,13 +37,7 @@ erlang-crypto=1:16.b.2 \
 erlang-dev=1:16.b.2 \
 erlang-base=1:16.b.2
 
-# Switch to Debian Jessie to install later GCC and G++ version
-sudo sed -i 's/wheezy/jessie/g' /etc/apt/sources.list
-sudo apt-get update --fix-missing
-sudo apt-get install gcc=4:4.9.2-2 g++=4:4.9.2-2 --yes
-sudo sed -i 's/jessie/wheezy/g' /etc/apt/sources.list
-
-# Download and unpack Riak 2.0.6
+# Download and unpack Riak KV 2.0.6
 wget http://s3.amazonaws.com/downloads.basho.com/riak/2.0/2.0.6/riak-2.0.6.tar.gz
 tar xf riak-2.0.6.tar.gz && cd riak-2.0.6
 
