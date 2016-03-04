@@ -7,8 +7,8 @@ bootstrap_complete() {
 }
 
 check_bootstrap() {
-  sudo cp -r ${script_path}/../../conf/. /usr/share/riak-pi-cluster/ \
-  && sudo chown -R root:root /usr/share/riak-pi-cluster \ 
+  cp -R ${script_path}/../../conf/. /usr/share/riak-pi-cluster/ \
+  && chown -R root:root /usr/share/riak-pi-cluster \ 
   && e_success "Copied configuration files to /usr/share/riak-pi-cluster"
 }
 
@@ -47,7 +47,7 @@ EOF
 
 pi_tweaks() {
   apt-get update --fix-missing
-  apt-get install vim --yes
+  apt-get install avahi-daemon vim --yes
   rm -f /etc/skel/pistore.desktop
   rm -rf /opt/minecraft-pi
   rm -rf /opt/sonic-pi
@@ -73,31 +73,31 @@ update_hostname_and_ipaddr() {
 
   case "$mac_address" in
     "b8:27:eb:fc:c5:10")
-      new_hostname="utility.pi"
+      new_hostname="utility.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     "b8:27:eb:a6:0d:2f")
-      new_hostname="riak1.pi"
+      new_hostname="riak1.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     "b8:27:eb:db:53:2e")
-      new_hostname="riak2.pi"
+      new_hostname="riak2.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     "b8:27:eb:9e:ea:52")
-      new_hostname="riak3.pi"
+      new_hostname="riak3.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     "b8:27:eb:d3:24:30")
-      new_hostname="riak4.pi"
+      new_hostname="riak4.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     "b8:27:eb:e4:bf:27")
-      new_hostname="riak5.pi"
+      new_hostname="riak5.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     "b8:27:eb:25:2d:8b")
-      new_hostname="dbrown.pi"
+      new_hostname="dbrown.local"
       new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
       ;;
     *) # catch all
