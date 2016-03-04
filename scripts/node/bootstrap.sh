@@ -47,7 +47,7 @@ EOF
 
 pi_tweaks() {
   apt-get update --fix-missing
-  apt-get install avahi-daemon vim --yes
+  apt-get install avahi-daemon iperf3 vim --yes
   rm -f /etc/skel/pistore.desktop
   rm -rf /opt/minecraft-pi
   rm -rf /opt/sonic-pi
@@ -70,35 +70,37 @@ update_hostname_and_ipaddr() {
   mac_address=`cat /sys/class/net/eth0/address`
   current_hostname=`hostname`
   current_eth0_ipaddr=`ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | cut -d " " -f1`
+  utility_eth0_ipaddr="192.168.0.110"
+  riak1_eth0_ipaddr="192.168.0.111"
+  riak2_eth0_ipaddr="192.168.0.112"
+  riak3_eth0_ipaddr="192.168.0.113"
+  riak4_eth0_ipaddr="192.168.0.114"  
+  riak5_eth0_ipaddr="192.168.0.115"  
 
-  case "$mac_address" in
+  case "${mac_address}" in
     "b8:27:eb:fc:c5:10")
       new_hostname="utility"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
+      new_eth0_ipaddr="${utility_eth0_ipaddr}"
       ;;
     "b8:27:eb:a6:0d:2f")
       new_hostname="riak1"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
+      new_eth0_ipaddr="${riak1_eth0_ipaddr}"
       ;;
     "b8:27:eb:db:53:2e")
       new_hostname="riak2"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
+      new_eth0_ipaddr="${riak2_eth0_ipaddr}"
       ;;
     "b8:27:eb:9e:ea:52")
       new_hostname="riak3"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
+      new_eth0_ipaddr="${riak3_eth0_ipaddr}"
       ;;
     "b8:27:eb:d3:24:30")
       new_hostname="riak4"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
+      new_eth0_ipaddr="${riak4_eth0_ipaddr}"
       ;;
     "b8:27:eb:e4:bf:27")
       new_hostname="riak5"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
-      ;;
-    "b8:27:eb:25:2d:8b")
-      new_hostname="dbrown"
-      new_eth0_ipaddr="$(grep ${new_hostname} /usr/share/riak-pi-cluster/node/etc_hosts | cut -f1)"
+      new_eth0_ipaddr="${riak5_eth0_ipaddr}"
       ;;
     *) # catch all
       new_hostname=$current_hostname
@@ -106,15 +108,15 @@ update_hostname_and_ipaddr() {
       ;;
   esac
 
-  sed -i "s/127.0.1.1.*$/127.0.1.1\t${new_hostname}/" /etc/hosts \
+  sed -i "s/127.0.1.1.*$/127.0.1.1\t${new_hostname}.local ${new_hostname}/" /etc/hosts \
   && e_success "Updated /etc/hosts with hostname"
 
-  echo $new_hostname > /etc/hostname \
-  && e_success "Reset hostname: $new_hostname"
+  echo ${new_hostname} > /etc/hostname \
+  && e_success "Reset hostname: ${new_hostname}"
 
-  sed -e "s/static_placeholder/$new_eth0_ipaddr/" \
+  sed -e "s/static_placeholder/${new_eth0_ipaddr}/" \
   /usr/share/riak-pi-cluster/node/etc_network_interfaces > /etc/network/interfaces \
-  && e_success "Reset IP address: $new_eth0_ipaddr"
+  && e_success "Reset IP address: ${new_eth0_ipaddr}"
 }
 
 update_sysctl() {

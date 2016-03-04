@@ -6,9 +6,3 @@ ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
 
 127.0.1.1	raspberrypi
-192.168.0.110	utility utility.local
-192.168.0.111	riak1 riak1.local
-192.168.0.112	riak2 riak2.local
-192.168.0.113	riak3 riak3.local
-192.168.0.114	riak4 riak4.local
-192.168.0.115	riak5 riak5.local
