@@ -26,9 +26,9 @@ install_carbon() {
 
 install_grafana() {
   echo "Installing grafana..."
-  wget https://raw.githubusercontent.com/fg2it/grafana-on-raspberry/master/v2.1.2/grafana_2.1.2_armhf.deb
+  wget https://riakpi.s3.amazonaws.com/grafana_2.1.2_armhf.deb -O /home/basho/grafana_2.1.2_armhf.deb
   apt-get install adduser libfontconfig --yes
-  dpkg -i grafana_2.1.2_armhf.deb \
+  dpkg -i /home/basho/grafana_2.1.2_armhf.deb \
   && e_success "Installed grafana"
   service grafana-server start \
   && e_success "Started grafana service"
@@ -75,3 +75,5 @@ install_graphite
 install_carbon
 install_apache
 install_grafana
+
+# todo: configure graphite and grafana for one second resolution
